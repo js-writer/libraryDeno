@@ -11,6 +11,7 @@ const readersList = async (withBorrows: boolean): Promise<Reader[]> => {
     (SELECT readers.id, readers.name, readers.surname, json_agg(borrows.bookid) as borrowsid
     FROM readers
     LEFT JOIN borrows ON borrows.readerid = readers.id
+    AND borrows.date_to IS NULL
     GROUP BY readers.id
     ORDER BY readers.surname ASC)t`
     : `SELECT json_agg(readers ORDER by readers.surname ASC) as readers FROM readers`;
