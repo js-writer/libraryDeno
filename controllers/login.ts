@@ -4,6 +4,7 @@ import { setCookie } from "https://deno.land/std@0.151.0/http/cookie.ts";
 import { LoginData } from "../types.ts";
 
 const loginUser = async (ctx: Context) : Promise<void> => {
+  console.log(':::Login:::');
   try {
     const data : LoginData = await ctx.request.body().value;
 
