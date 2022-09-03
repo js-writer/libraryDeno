@@ -28,6 +28,7 @@ const loginUser = async (ctx: Context) : Promise<void> => {
         maxAge : 24 * 60 *60 * 1000
       });
     }
+    console.log("===Login try===");
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
       ctx.response.status = 401;
@@ -37,6 +38,8 @@ const loginUser = async (ctx: Context) : Promise<void> => {
       ctx.response.status = 403;
       ctx.response.body = "Wrong login or password";
     }
+
+    console.log(':::Login err:::', err);
   }
 };
 
