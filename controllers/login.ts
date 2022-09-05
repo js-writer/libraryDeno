@@ -4,7 +4,6 @@ import { setCookie } from "https://deno.land/std@0.151.0/http/cookie.ts";
 import { LoginData } from "../types.ts";
 
 const loginUser = async (ctx: Context) : Promise<void> => {
-  console.log(':::Login:::');
   try {
     const data : LoginData = await ctx.request.body().value;
 
@@ -28,7 +27,6 @@ const loginUser = async (ctx: Context) : Promise<void> => {
         maxAge : 24 * 60 *60 * 1000
       });
     }
-    console.log("===Login try===");
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
       ctx.response.status = 401;
@@ -39,7 +37,6 @@ const loginUser = async (ctx: Context) : Promise<void> => {
       ctx.response.body = "Wrong login or password";
     }
 
-    console.log(':::Login err:::', err);
   }
 };
 
